@@ -1,44 +1,45 @@
 import React from "react";
+import { Header } from "../components/header";
+import { AppButton } from "../components/AppButton";
+import { AppInput } from "../components/AppInput";
 
-const Welcome = () => {
+const Welcome = ({ onGoNextPage }) => {
   return (
-    <div>
       <div className="container">
         <div className="wrapper">
           <div className="welcome">
-            <h1>Добро пожаловать в квиз от лучшего учебного центра</h1>
+            <Header type="h1" headerText="Добро пожаловать в квиз от лучшего учебного центра"/>
             <form className="welcome__form">
-              <label className="input-wrapper" htmlFor="username">
-                Ваше имя
-                <input
-                  required
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="Ваш ответ"
-                />
-                <span id="error-message">
-                  Введите номер в правильном формате например
-                </span>
-              </label>
-              <label className="input-wrapper" htmlFor="username">
-                Ваш номер
-                <input
-                  required
-                  type="tel"
-                  name="phone"
-                  id="phone"
-                  placeholder="+998 9- --- -- -- "
-                  pattern="^(?:\+998)?(?:\d{2})?(?:\d{7})$"
-                />
-                <span id="error-message">Введите номер в правильном формате</span>
-              </label>
-              <button disabled type="submit" id="next-btn">Далее</button>
+              <AppInput 
+                id="username" 
+                isRequired={true}
+                name="username"
+                type="text"
+                labelText="Ваше имя"
+                placeholderText="Ваш ответ"
+                errorText=" Введите номер в правильном формате например"
+              />
+              <AppInput 
+                id="phone"
+                isRequired={true}
+                name="phone"
+                type="tel"
+                labelText="Ваш номер"
+                placeholderText="+998 9- --- -- -- "
+                pattern="^(?:\+998)?(?:\d{2})?(?:\d{7})$"
+                errorText="Введите номер в правильном формате"
+              />
+              <AppButton 
+               isDisabled={false} 
+               type="submit" 
+               id="next-btn" 
+               buttonText="Далее"
+               onclick={() => onGoNextPage}
+              />
             </form>
           </div>
         </div>
       </div>
-    </div>
   )
 }
 

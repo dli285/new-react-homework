@@ -1,6 +1,11 @@
 import React from "react";
+import { Indicator } from "../components/Indicator";
+import { Header } from "../components/header";
+import { AppButton } from "../components/AppButton";
+import { AppInput } from "../components/AppInput";
 
-const StepOne = () => {
+
+const StepOne = (onGoNextPage) => {
   return (
     <div className="container">
       <div className="wrapper">
@@ -20,19 +25,21 @@ const StepOne = () => {
             </div>
           </div>
           <div className="question">
-            <h2>1. Занимательный вопрос</h2>
-            <label className="input-wrapper">
-              <input
-                required
-                type="text"
+            <Header type="h2" headerText="1. Занимательный вопрос"/>
+            <AppInput  
+                isRequired={true}
                 name="answer"
-                placeholder="Ваш ответ"
-              />
-              <span id="error-message">
-                Введите номер в правильном формате например
-              </span>
-            </label>
-            <button disabled id="next-btn">Далее</button>
+                type="text"
+                placeholderText="Ваш ответ"
+                errorText=" Введите номер в правильном формате например"
+            />
+            <AppButton 
+               isDisabled={true} 
+               type="submit" 
+               id="next-btn" 
+               buttonText="Далее"
+               onclick={() => onGoNextPage}
+            />
           </div>
         </div>
       </div>
