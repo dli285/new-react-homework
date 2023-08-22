@@ -9,7 +9,8 @@ export const AppInput = (
         name, 
         placeholderText,
         errorText,
-        pattern
+        pattern,
+        onChange
     }
 ) => {
     return (
@@ -22,6 +23,7 @@ export const AppInput = (
           id={id}
           placeholder={placeholderText}
           pattern={pattern}
+          onChange={onChange}
         />
         <span id="error-message">
           {errorText}

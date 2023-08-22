@@ -333,13 +333,13 @@ button:enabled:active {
   font-size: 12px;
   width: 100%;
 }
-.level-variants .variant-wrapper label[for=variant-1]::after {
+.level-variants .variant-wrapper label[for=numeric-answer-1]::after {
   content: "скорее нет";
 }
-.level-variants .variant-wrapper label[for=variant-3]::after {
+.level-variants .variant-wrapper label[for=numeric-answer-3]::after {
   content: "не знаю";
 }
-.level-variants .variant-wrapper label[for=variant-5]::after {
+.level-variants .variant-wrapper label[for=numeric-answer-5]::after {
   content: "скорее да";
 }
 

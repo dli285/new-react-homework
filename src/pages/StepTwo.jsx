@@ -1,14 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import { Indicator } from "../components/Indicator";
-import { Header } from "../components/header";
+import { Header } from "../components/Header";
 import { AppButton } from "../components/AppButton";
 import { ListedAnswerItem } from "../components/ListedAnswerItem";
 
-const StepTwo = () => {
+const StepTwo = ({onGoNextPage}) => {
+  const [checkedItem, setCheckedItem] = useState(null)
+
   const answerTypes = [
     {
       id: 'variant=1',
-      text: 'Ваш ответ1'
+      text: 'Ваш ответ1',
     },
     {
       id: 'variant=2',
@@ -30,22 +32,26 @@ const StepTwo = () => {
       <div className="variants-quiz">
         <Indicator />
         <div className="question">
-        <Header type="h2" headerText="1. Занимательный вопрос"/>
+        <Header type="h2" headerText="2. Занимательный вопрос"/>
           <ul className="variants">
             {
               answerTypes.map(answerItem => (
                 <ListedAnswerItem 
                  key={answerItem.id}
                  id={answerItem.id} 
-                 answerText={answerItem.text} />
+                 answerText={answerItem.text} 
+                 isChecked={checkedItem === answerItem.id}
+                 onChange={() => setCheckedItem(answerItem.id)}
+                />
               ))
             }
           </ul>
           <AppButton 
-               isDisabled={true} 
-               type="submit" 
-               id="next-btn" 
-               buttonText="Далее"
+            isDisabled={!checkedItem} 
+            type="submit" 
+            id="next-btn" 
+            buttonText="Далее"
+            onClick={() => onGoNextPage()}
           />
         </div>
       </div>

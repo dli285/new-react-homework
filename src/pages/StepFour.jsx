@@ -1,49 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import { Indicator } from "../components/Indicator";
+import { Header } from "../components/Header";
+import { NumericAnswerItem } from "../components/NumericAnswerItem";
+import { AppButton } from "../components/AppButton";
 
-const StepFour = () => {
+const StepFour = ({onGoNextPage}) => {
+  const [checkedItem3,setCheckedItem3] = useState(null)
+
+  const answerOptions = [
+    {
+      id: 'numeric-answer-1',
+      answerText: 1
+    },
+    {
+      id: 'numeric-answer-2',
+      answerText: 2
+    },
+    {
+      id: 'numeric-answer-3',
+      answerText: 3
+    },
+    {
+      id: 'numeric-answer-4',
+      answerText: 4
+    },
+    {
+      id: 'numeric-answer-5',
+      answerText: 5
+    }
+  ]
   return (
     <div className="container">
       <div className="wrapper">
         <div className="emoji-quiz">
-          <div className="indicator">
-            <div className="indicator__text">
-              <span className="indicator__description"
-                >Скидка за прохождение опроса:
-              </span>
-              <span className="indicator__value">15%</span>
-            </div>
-            <div className="indicator__progressbar">
-              <div className="indicator__unit indicator__unit-1 _active"></div>
-              <div className="indicator__unit indicator__unit-2 _active"></div>
-              <div className="indicator__unit indicator__unit-3 _active"></div>
-              <div className="indicator__unit indicator__unit-4"></div>
-            </div>
-          </div>
+          <Indicator />
           <div className="question">
-            <h2>4. Занимательный вопрос</h2>
+            <Header type="h2" headerText="4. Занимательный вопрос"/>
             <ul className="level-variants">
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-1" />
-                <label htmlFor="variant-1">1</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-2" />
-                <label htmlFor="variant-2">2</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-3" />
-                <label htmlFor="variant-3">3</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-4" />
-                <label htmlFor="variant-4">4</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-5" />
-                <label htmlFor="variant-5">5</label>
-              </li>
+              {answerOptions.map(answerItem => (
+                <NumericAnswerItem 
+                  key={answerItem.id} 
+                  id={answerItem.id} 
+                  answerText={answerItem.answerText} 
+                  isChecked={checkedItem3 === answerItem.id}
+                  onChange={() => setCheckedItem3(answerItem.id)}
+                />
+              ))}
             </ul>
-            <button id="next-btn" disabled>Далее</button>
+            <AppButton
+             id="next-button"
+             isDisabled={!checkedItem3}
+             type="submit"
+             buttonText="Завершить"
+             onClick={() => onGoNextPage()}
+            />
           </div>
         </div>
       </div>
