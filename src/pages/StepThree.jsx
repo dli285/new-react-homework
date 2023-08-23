@@ -38,7 +38,7 @@ const StepThree = ({onGoNextPage}) => {
     <div className="container">
       <div className="wrapper">
         <div className="emoji-quiz">
-          <Indicator />
+          <Indicator progress={3}/>
           <div className="question">
             <Header type="h2" headerText="3. Занимательный вопрос" />
             <ul className="emoji-variants">

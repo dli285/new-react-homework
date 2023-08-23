@@ -33,7 +33,7 @@ const StepFour = ({onGoNextPage}) => {
     <div className="container">
       <div className="wrapper">
         <div className="emoji-quiz">
-          <Indicator />
+          <Indicator progress={4} />
           <div className="question">
             <Header type="h2" headerText="4. Занимательный вопрос"/>
             <ul className="level-variants">

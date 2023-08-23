@@ -10,11 +10,13 @@ export const AppInput = (
         placeholderText,
         errorText,
         pattern,
-        onChange
+        onChange,
+        hasError,
+        value
     }
 ) => {
     return (
-      <label className="input-wrapper" htmlFor={id}>
+      <label className={`input-wrapper ${hasError && '_error'}`} htmlFor={id}>
         {labelText}
         <input
           required={isRequired}
@@ -24,10 +26,12 @@ export const AppInput = (
           placeholder={placeholderText}
           pattern={pattern}
           onChange={onChange}
+          value={value}
         />
-        <span id="error-message">
+       {hasError &&
+       <span id="error-message">
           {errorText}
-        </span>
+        </span>}
        </label>
     )
 }

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Indicator } from "../components/Indicator";
 import { Header } from "../components/Header";
 import { AppButton } from "../components/AppButton";
@@ -25,12 +25,24 @@ const StepTwo = ({onGoNextPage}) => {
       text: 'Ваш ответ4'
     }
   ]
+  useEffect ( () => {
+    
+  }, [])
+  
+  const submitForm = () => {
+    const userData = answerTypes.find(answerItem => answerItem.id === checkedItem);
+    if (userData) {
+      localStorage.setItem('userData2', JSON.stringify(userData));
+    }
+
+    onGoNextPage();
+  };
 
   return (
     <div className="container">
     <div className="wrapper">
       <div className="variants-quiz">
-        <Indicator />
+        <Indicator progress={2}/>
         <div className="question">
         <Header type="h2" headerText="2. Занимательный вопрос"/>
           <ul className="variants">
@@ -51,7 +63,7 @@ const StepTwo = ({onGoNextPage}) => {
             type="submit" 
             id="next-btn" 
             buttonText="Далее"
-            onClick={() => onGoNextPage()}
+            onClick={submitForm}
           />
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Indicator = () => {
+export const Indicator = ({ progress }) => {
     return (
         <div className="indicator">
             <div className="indicator__text">
@@ -10,10 +10,10 @@ export const Indicator = () => {
             <span className="indicator__value">15%</span>
             </div>
             <div className="indicator__progressbar">
-            <div className="indicator__unit indicator__unit-1 _active"></div>
-            <div className="indicator__unit indicator__unit-2"></div>
-            <div className="indicator__unit indicator__unit-3"></div>
-            <div className="indicator__unit indicator__unit-4"></div>
+                {
+                    Array.from({ length: 4 }).map(
+                        (_, idx) => <div key={`indicator_unit-${idx}`} className={`indicator__unit ${idx < progress && `_active`}`} />)
+                }
             </div>
         </div>
     )
