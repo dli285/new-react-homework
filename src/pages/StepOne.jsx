@@ -56,7 +56,7 @@ const submitForm = () => {
           <div className="question">
             <Header type="h2" headerText="1. Занимательный вопрос"/>
             <AppInput  
-                isRzequired={true}
+                isRequired={true}
                 name="answer"
                 type="text"
                 placeholderText="Ваш ответ"
