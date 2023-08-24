@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Indicator } from "../components/Indicator";
 import { Header } from "../components/Header";
 import { NumericAnswerItem } from "../components/NumericAnswerItem";
@@ -29,6 +29,22 @@ const StepFour = ({onGoNextPage}) => {
       answerText: 5
     }
   ]
+  useEffect ( () => {
+    const rawUserData = localStorage.getItem('userData4');
+    if (rawUserData) {
+      const userData = JSON.parse(rawUserData);
+      setCheckedItem3(userData.id);
+    }
+  }, [])
+  
+  const submitForm = () => {
+    const userData = answerOptions.find(answerItem => answerItem.id === checkedItem3);
+    if (userData) {
+      localStorage.setItem('userData4', JSON.stringify(userData));
+    }
+
+    onGoNextPage();
+  };
   return (
     <div className="container">
       <div className="wrapper">
@@ -52,7 +68,7 @@ const StepFour = ({onGoNextPage}) => {
              isDisabled={!checkedItem3}
              type="submit"
              buttonText="Завершить"
-             onClick={() => onGoNextPage()}
+             onClick={submitForm}
             />
           </div>
         </div>

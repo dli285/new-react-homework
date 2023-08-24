@@ -6,16 +6,18 @@ import { AppInput } from "../components/AppInput";
 
 
 const StepOne = ({onGoNextPage}) => {
-const [userAnswer,setUserAnswer] = useState(null)
+const [userAnswer,setUserAnswer] = useState('')
 
 const [userAnswerError, setUserAnswerError] = useState(false)
 
 useEffect( () => {
   const rawUserData=localStorage.getItem('userData1')
-  const { userAnswer }=JSON.parse(rawUserData)
-
-  if (userAnswer) {
-    setUserAnswer(userAnswer)
+  if (rawUserData) {
+    const { userAnswer }=JSON.parse(rawUserData)
+    
+    if (userAnswer) {
+      setUserAnswer(userAnswer)
+    }
   }
 }, [])
 

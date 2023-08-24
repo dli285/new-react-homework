@@ -26,7 +26,11 @@ const StepTwo = ({onGoNextPage}) => {
     }
   ]
   useEffect ( () => {
-    
+    const rawUserData = localStorage.getItem('userData2');
+    if (rawUserData) {
+      const userData = JSON.parse(rawUserData);
+      setCheckedItem(userData.id);
+    }
   }, [])
   
   const submitForm = () => {

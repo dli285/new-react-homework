@@ -4,16 +4,17 @@ import { AppButton } from "../components/AppButton";
 import { AppInput } from "../components/AppInput";
 
 const Welcome = ({ onGoNextPage }) => {
-  const[userName, setUsername] = useState(null)
-  const[userPhone, setUserphone] = useState(null)
+  const[userName, setUsername] = useState('')
+  const[userPhone, setUserphone] = useState('')
   //validation для полей
   const[userNameError, setUserNameError] = useState(false)
   const[userPhoneError, setUserPhoneError] = useState(false)
 
   useEffect ( () => {
     const rawUserData = localStorage.getItem('userData')
-    const { userName, userPhone} = JSON.parse(rawUserData)
-
+      if (rawUserData) {
+        const { userName, userPhone} = JSON.parse(rawUserData)
+        
     if (userName) {
       setUsername(userName)
     }
@@ -21,6 +22,7 @@ const Welcome = ({ onGoNextPage }) => {
     if (userPhone) {
       setUserphone(userPhone)
     }
+  }
   }, [])
 
   const hasErrors = userNameError || userPhoneError

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { AppButton } from "../components/AppButton";
 import { Indicator } from "../components/Indicator";
 import { Header } from "../components/Header"
@@ -33,6 +33,22 @@ const StepThree = ({onGoNextPage}) => {
       alt:'fright'
     },
   ]
+  useEffect ( () => {
+    const rawUserData = localStorage.getItem('userData3');
+    if (rawUserData) {
+      const userData = JSON.parse(rawUserData);
+      setCheckedItem2(userData.id);
+    }
+  }, [])
+  
+  const submitForm = () => {
+    const userData = answerVariants.find(answerItem => answerItem.id === checkedItem2);
+    if (userData) {
+      localStorage.setItem('userData3', JSON.stringify(userData));
+    }
+
+    onGoNextPage();
+  };
 
   return (
     <div className="container">
@@ -60,7 +76,7 @@ const StepThree = ({onGoNextPage}) => {
                type="submit" 
                id="next-btn" 
                buttonText="Далее"
-               onClick={() => onGoNextPage()}
+               onClick={submitForm}
             />
           </div>
         </div>
