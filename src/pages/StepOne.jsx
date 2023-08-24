@@ -60,7 +60,7 @@ const submitForm = () => {
                 name="answer"
                 type="text"
                 placeholderText="Ваш ответ"
-                errorText=" Введите номер в правильном формате например"
+                errorText=" Ответ должен содержать только буквы"
                 onChange={validateUserAnswer}
                 hasError={userAnswerError}
                 value={userAnswer}
